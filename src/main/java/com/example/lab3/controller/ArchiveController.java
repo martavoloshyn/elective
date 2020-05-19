@@ -2,7 +2,6 @@ package com.example.lab3.controller;
 
 import com.example.lab3.entity.Archive;
 import com.example.lab3.service.ArchiveService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping(path = "/archive")
 public class ArchiveController {
     @Autowired
