@@ -25,16 +25,16 @@ public class ArchiveRepository {
                 new Object[]{archiveId}, Long.class);
     }
 
-    public boolean post(Archive archive) {
+    public int post(Archive archive) {
         return jdbcTemplate.update("INSERT INTO archive (registration_id,mark,date) VALUES (?,?,?)",
-                archive.getRegistration().getRegistrationId(), archive.getMark(), archive.getDate()) == 1;
+                archive.getRegistration().getRegistrationId(), archive.getMark(), archive.getDate());
     }
 
-    public boolean putMarkAndDate(long archiveId, int mark, Timestamp date) {
-        return jdbcTemplate.update("UPDATE archive SET mark=?, date=? WHERE archive_id=?", mark, date, archiveId) == 1;
+    public int putMarkAndDate(long archiveId, int mark, Timestamp date) {
+        return jdbcTemplate.update("UPDATE archive SET mark=?, date=? WHERE archive_id=?", mark, date, archiveId);
     }
 
-    public boolean delete(long id) {
-        return jdbcTemplate.update("DELETE FROM archive WHERE archive_id=?", id) == 1;
+    public int delete(long id) {
+        return jdbcTemplate.update("DELETE FROM archive WHERE archive_id=?", id);
     }
 }

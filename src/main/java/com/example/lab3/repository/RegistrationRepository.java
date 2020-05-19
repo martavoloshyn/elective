@@ -29,13 +29,13 @@ public class RegistrationRepository {
                 new Object[]{registrationId}, Long.class);
     }
 
-    public boolean post(Registration registration) {
+    public int post(Registration registration) {
         return jdbcTemplate.update("INSERT INTO registrations (student_id,course_id,year,semester) VALUES (?,?,?,?)",
                 registration.getStudent().getStudentId(), registration.getCourse().getCourseId(),
-                registration.getYear(), registration.getSemester()) == 1;
+                registration.getYear(), registration.getSemester());
     }
 
-    public boolean delete(long id) {
-        return jdbcTemplate.update("DELETE FROM registrations WHERE registration_id=?", id) == 1;
+    public int delete(long id) {
+        return jdbcTemplate.update("DELETE FROM registrations WHERE registration_id=?", id);
     }
 }

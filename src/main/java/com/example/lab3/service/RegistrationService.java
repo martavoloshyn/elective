@@ -25,10 +25,10 @@ public class RegistrationService {
     }
 
     public boolean post(Registration registration) {
-        return registrationRepository.post(registration);
+        return registrationRepository.post(registration) == 1;
     }
 
     public boolean delete(long id) {
-        return registrationRepository.delete(id);
+        return registrationRepository.delete(id) == 1;
     }
 }

@@ -23,14 +23,14 @@ public class ArchiveService {
     }
 
     public boolean post(Archive archive) {
-        return archiveRepository.post(archive);
+        return archiveRepository.post(archive) == 1;
     }
 
     public boolean putMarkAndDate(long archiveId, int mark, Timestamp date) {
-        return archiveRepository.putMarkAndDate(archiveId, mark, date);
+        return archiveRepository.putMarkAndDate(archiveId, mark, date) == 1;
     }
 
     public boolean delete(long id) {
-        return archiveRepository.delete(id);
+        return archiveRepository.delete(id) == 1;
     }
 }

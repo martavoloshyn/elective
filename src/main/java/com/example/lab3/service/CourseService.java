@@ -21,6 +21,6 @@ public class CourseService {
     }
 
     public boolean putTeacher(long courseId, long teacherId) {
-        return courseRepository.putTeacher(courseId, teacherId);
+        return courseRepository.putTeacher(courseId, teacherId) == 1;
     }
 }
