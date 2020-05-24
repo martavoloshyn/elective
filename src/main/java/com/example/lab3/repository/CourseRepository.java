@@ -25,12 +25,7 @@ public class CourseRepository {
                 new Object[]{courseId}, Long.class);
     }
 
-    public int post(Course course) {
-        return jdbcTemplate.update("INSERT INTO courses(course_id,course_name,teacher_id) VALUES (?,?,?)",
-                course.getCourseId(), course.getCourseName(), course.getTeacher().getTeacherId());
-    }
-
-    public int putTeacher(long courseId, long teacherId) {
-        return jdbcTemplate.update("UPDATE courses SET teacher_id=? WHERE course_id=?", teacherId, courseId);
+    public void putTeacher(long courseId, long teacherId) {
+        jdbcTemplate.update("UPDATE courses SET teacher_id=? WHERE course_id=?", teacherId, courseId);
     }
 }

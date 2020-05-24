@@ -21,31 +21,21 @@ public class ArchiveController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> postArchive(@RequestBody Archive archive) {
-        if (archiveService.post(archive)) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+    public ResponseEntity<Long> postArchive(@RequestBody Archive archive) {
+        return ResponseEntity.status(HttpStatus.OK).body(archiveService.post(archive));
     }
 
     @PutMapping("/{archiveId}")
-    public ResponseEntity<String> putMarkAndDate(@PathVariable long archiveId,
-                                                 @RequestParam("mark") int mark,
-                                                 @RequestParam("date") String date) {
-        if (archiveService.putMarkAndDate(archiveId, mark, Timestamp.valueOf(date))) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+    public ResponseEntity<Archive> putMarkAndDate(@PathVariable long archiveId,
+                                                  @RequestParam("mark") int mark,
+                                                  @RequestParam("date") String date) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(archiveService.putMarkAndDate(archiveId, mark, Timestamp.valueOf(date)));
     }
 
     @DeleteMapping("/{archiveId}")
     public ResponseEntity<String> deleteArchive(@PathVariable long archiveId) {
-        if (archiveService.delete(archiveId)) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+        archiveService.delete(archiveId);
+        return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }
 }

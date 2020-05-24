@@ -20,11 +20,7 @@ public class CourseController {
     }
 
     @PutMapping("/{courseId}/teacher/{teacherId}")
-    public ResponseEntity<String> changeTeacher(@PathVariable long courseId, @PathVariable long teacherId) {
-        if (courseService.putTeacher(courseId, teacherId)) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+    public ResponseEntity<Course> changeTeacher(@PathVariable long courseId, @PathVariable long teacherId) {
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.putTeacher(courseId, teacherId));
     }
 }

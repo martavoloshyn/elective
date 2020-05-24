@@ -24,11 +24,14 @@ public class RegistrationService {
         return registration;
     }
 
-    public boolean post(Registration registration) {
-        return registrationRepository.post(registration) == 1;
+    public Long post(Registration registration) {
+        registrationRepository.post(registration);
+        return registrationRepository.getRegistrationIdIdByStudentIdAndCourseId(
+                registration.getStudent().getStudentId(),
+                registration.getCourse().getCourseId());
     }
 
-    public boolean delete(long id) {
-        return registrationRepository.delete(id) == 1;
+    public void delete(long id) {
+        registrationRepository.delete(id);
     }
 }

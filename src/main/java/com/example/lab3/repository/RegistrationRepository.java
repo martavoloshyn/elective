@@ -24,13 +24,20 @@ public class RegistrationRepository {
                 new Object[]{registrationId}, Long.class);
     }
 
+    public Long getRegistrationIdIdByStudentIdAndCourseId(long studentId, long courseId){
+        return jdbcTemplate.queryForObject(
+                "SELECT registration_id FROM registrations WHERE student_id=? and course_id=?",
+                new Object[]{studentId, courseId},
+                Long.class);
+    }
+
     public Long getStudentIdByRegistrationId(long registrationId) {
         return jdbcTemplate.queryForObject("SELECT student_id FROM registrations WHERE registration_id=?",
                 new Object[]{registrationId}, Long.class);
     }
 
-    public int post(Registration registration) {
-        return jdbcTemplate.update("INSERT INTO registrations (student_id,course_id,year,semester) VALUES (?,?,?,?)",
+    public void post(Registration registration) {
+        jdbcTemplate.update("INSERT INTO registrations (student_id,course_id,year,semester) VALUES (?,?,?,?)",
                 registration.getStudent().getStudentId(), registration.getCourse().getCourseId(),
                 registration.getYear(), registration.getSemester());
     }

@@ -20,20 +20,13 @@ public class RegistrationController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> postRegistration(@RequestBody Registration registration) {
-        if (registrationService.post(registration)) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+    public ResponseEntity<Long> postRegistration(@RequestBody Registration registration) {
+        return ResponseEntity.status(HttpStatus.OK).body(registrationService.post(registration));
     }
 
     @DeleteMapping("/{registrationId}")
     public ResponseEntity<String> deleteRegistration(@PathVariable long registrationId) {
-        if (registrationService.delete(registrationId)) {
-            return ResponseEntity.status(HttpStatus.OK).body("success");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
-        }
+        registrationService.delete(registrationId);
+        return ResponseEntity.status(HttpStatus.OK).body("deleted");
     }
 }

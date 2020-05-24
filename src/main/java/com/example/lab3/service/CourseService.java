@@ -20,7 +20,8 @@ public class CourseService {
         return course;
     }
 
-    public boolean putTeacher(long courseId, long teacherId) {
-        return courseRepository.putTeacher(courseId, teacherId) == 1;
+    public Course putTeacher(long courseId, long teacherId) {
+        courseRepository.putTeacher(courseId, teacherId);
+        return courseRepository.get(courseId);
     }
 }

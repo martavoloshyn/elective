@@ -22,15 +22,17 @@ public class ArchiveService {
         return archive;
     }
 
-    public boolean post(Archive archive) {
-        return archiveRepository.post(archive) == 1;
+    public Long post(Archive archive) {
+        archiveRepository.post(archive);
+        return archiveRepository.getArchiveIdByRegistrationId(archive.getRegistration().getRegistrationId());
     }
 
-    public boolean putMarkAndDate(long archiveId, int mark, Timestamp date) {
-        return archiveRepository.putMarkAndDate(archiveId, mark, date) == 1;
+    public Archive putMarkAndDate(long archiveId, int mark, Timestamp date) {
+        archiveRepository.putMarkAndDate(archiveId, mark, date);
+        return archiveRepository.get(archiveId);
     }
 
-    public boolean delete(long id) {
-        return archiveRepository.delete(id) == 1;
+    public void delete(long id) {
+        archiveRepository.delete(id);
     }
 }
