@@ -42,7 +42,7 @@ public class RegistrationRepository {
                 registration.getYear(), registration.getSemester());
     }
 
-    public int delete(long id) {
-        return jdbcTemplate.update("DELETE FROM registrations WHERE registration_id=?", id);
+    public void delete(long id) {
+        jdbcTemplate.update("DELETE FROM registrations WHERE registration_id=?", id);
     }
 }

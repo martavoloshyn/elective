@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/registration")
 public class RegistrationController {
 
-    @Autowired
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
+
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
 
     @GetMapping("/{registrationId}")
     public ResponseEntity<Registration> getRegistration(@PathVariable long registrationId) {
         return ResponseEntity.status(HttpStatus.OK).body(registrationService.get(registrationId));
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Long> postRegistration(@RequestBody Registration registration) {
         return ResponseEntity.status(HttpStatus.OK).body(registrationService.post(registration));
     }

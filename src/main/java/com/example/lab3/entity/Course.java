@@ -1,12 +1,8 @@
 package com.example.lab3.entity;
 
-import lombok.*;
+import lombok.Data;
 
-@Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(exclude = {"courseName", "teacher"})
 public class Course {
     private long courseId;
     private String courseName;

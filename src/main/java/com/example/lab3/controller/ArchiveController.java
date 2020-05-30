@@ -2,7 +2,6 @@ package com.example.lab3.controller;
 
 import com.example.lab3.entity.Archive;
 import com.example.lab3.service.ArchiveService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +11,18 @@ import java.sql.Timestamp;
 @RestController
 @RequestMapping(path = "/archive")
 public class ArchiveController {
-    @Autowired
-    private ArchiveService archiveService;
+    private final ArchiveService archiveService;
+
+    public ArchiveController(ArchiveService archiveService) {
+        this.archiveService = archiveService;
+    }
 
     @GetMapping("/{archiveId}")
     public ResponseEntity<Archive> getArchive(@PathVariable long archiveId) {
         return ResponseEntity.status(HttpStatus.OK).body(archiveService.get(archiveId));
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Long> postArchive(@RequestBody Archive archive) {
         return ResponseEntity.status(HttpStatus.OK).body(archiveService.post(archive));
     }
